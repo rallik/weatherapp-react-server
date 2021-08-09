@@ -1,0 +1,17 @@
+{
+  "name": "photoweather_server",
+  "version": "1.0.0",
+  "description": "Server for PhotoWeather app built with Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Reuben Allik",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
