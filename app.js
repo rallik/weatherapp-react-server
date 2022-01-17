@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const dotenv = require('dotenv');
-// const rateLimit = require('express-rate-limit');
+const rateLimit = require('express-rate-limit');
 dotenv.config();
 
 
