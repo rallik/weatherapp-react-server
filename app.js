@@ -2,27 +2,27 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const dotenv = require('dotenv');
-const rateLimit = require('express-rate-limit');
+// const rateLimit = require('express-rate-limit');
 dotenv.config();
 
 
 const app = express()
-app.set('trust proxy', 1)
+// app.set('trust proxy', 1)
 app.use(cors());
 app.use(express.json({
   type: ['application.json']
 }));
 
-const requestLimiter = rateLimit({
-  windowMs: 60000,
-  max: 10,
-  handler: function (req, res) {
-    return res.status(429).json({
-      error: 'Request limit exceeded. Please wait a while then try again'
-    })
-  },
-})
-app.use(requestLimiter)
+// const requestLimiter = rateLimit({
+//   windowMs: 60000,
+//   max: 10,
+//   handler: function (req, res) {
+//     return res.status(429).json({
+//       error: 'Request limit exceeded. Please wait a while then try again'
+//     })
+//   },
+// })
+// app.use(requestLimiter)
 
 const port = process.env.PORT || 5501;
 
