@@ -10,7 +10,7 @@ app.use(cors({
   origin: ['https://photo-weather.netlify.app/']
 }));
 app.use(express.json({
-  type: ['application.json']
+  type: ['application/json']
 }));
 
 
@@ -31,9 +31,9 @@ let units = '&units=imperial';
 // Recieves POST from client, cleans input of special characters, accesses OpenWeather 
 // Current Weather API, and returns result to the client.
 app.post('/weather', (req, res) => {
-  if (req.body.loc) {
-    const searchLoc = req.body.loc.toLowerCase().replace(/[^a-zA-Z -,]/g, "");
-
+  // console.log(req.body.loc)
+  const searchLoc = req.body.loc ? req.body.loc.toLowerCase().replace(/[^a-zA-Z, -]/g, "") : null;
+  if (searchLoc && searchLoc.length > 0) {
     const apiLoc = `q=${searchLoc}`;
     const apiUrl = baseUrl + apiLoc + apiKey + units;
 
@@ -57,9 +57,9 @@ app.post('/weather', (req, res) => {
           console.log('Error other', error.message);
         }
 
-        res.json({ cod: '404', message: 'city not found' })
+        res.json({ cod: '404', message: 'Location not found' })
       });
   } else {
-    res.json("Invalid Location")
+    res.json({ cod: '400', message: 'Invalid Location' })
   }
 })
